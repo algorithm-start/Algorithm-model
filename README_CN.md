@@ -38,7 +38,6 @@ recplatform/
 │   └── recplatform-web/         # 应用入口、配置、系统信息
 ├── recplatform-ui/              # Vue 3 前端应用
 ├── solver-engine/               # Python 求解引擎（FastAPI）
-├── offline-deploy/              # 离线部署脚本
 ├── docker-compose.yml           # Docker Compose 配置
 └── docs/                        # 文档目录
 ```
