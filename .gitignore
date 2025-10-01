@@ -1,0 +1,71 @@
+# ========================
+# Java / Maven
+# ========================
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ========================
+# Node.js / Frontend
+# ========================
+node_modules/
+dist/
+.vite/
+
+# ========================
+# Python / Solver Engine
+# ========================
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# ========================
+# IDE & Editor
+# ========================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+
+# ========================
+# Database
+# ========================
+*.mv.db
+*.trace.db
+*.h2.db
+
+# ========================
+# Logs
+# ========================
+*.log
+logs/
+
+# ========================
+# Environment / Secrets
+# ========================
+.env
+.env.local
+.env.*.local
+
+# ========================
+# Misc
+# ========================
+.aone_copilot/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ========================
+# Removed features assets
+# ========================
+recplatform-ui/public/tiles/
+recplatform-ui/public/models/
+background/

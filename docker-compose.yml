@@ -1,0 +1,161 @@
+version: '3.8'
+
+services:
+  # ============ Infrastructure ============
+  postgres:
+    image: postgres:15-alpine
+    container_name: rec-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: recplatform
+      POSTGRES_USER: recplatform
+      POSTGRES_PASSWORD: recplatform123
+      TZ: Asia/Shanghai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rec-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U recplatform"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: rec-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass redis123
+    volumes:
+      - redis_data:/data
+    networks:
+      - rec-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "redis123", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rec-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: recplatform
+      RABBITMQ_DEFAULT_PASS: recplatform123
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - rec-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  minio:
+    image: minio/minio
+    container_name: rec-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: recplatform
+      MINIO_ROOT_PASSWORD: recplatform123
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - rec-network
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:23.8
+    container_name: rec-clickhouse
+    ports:
+      - "8123:8123"
+      - "9009:9000"
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+    networks:
+      - rec-network
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--query", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============ Application ============
+  backend:
+    build:
+      context: ./recplatform-server
+      dockerfile: Dockerfile
+    container_name: rec-backend
+    ports:
+      - "8080:8080"
+    environment:
+      TZ: Asia/Shanghai
+      JAVA_OPTS: "-Duser.timezone=Asia/Shanghai"
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/recplatform
+      SPRING_DATASOURCE_USERNAME: recplatform
+      SPRING_DATASOURCE_PASSWORD: recplatform123
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: redis123
+      SOLVER_ENGINE_URL: http://solver-engine:8000
+      MODEL_UPLOAD_DIR: /app/data/models
+    volumes:
+      # Persist H2 file database and uploaded 3D model files across restarts.
+      - backend_data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - rec-network
+    restart: unless-stopped
+
+  solver-engine:
+    build:
+      context: ./solver-engine
+      dockerfile: Dockerfile
+    container_name: rec-solver-engine
+    ports:
+      - "8000:8000"
+    environment:
+      PYTHONUNBUFFERED: 1
+      LOG_LEVEL: info
+    networks:
+      - rec-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./recplatform-ui
+      dockerfile: Dockerfile
+    container_name: rec-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - rec-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  rabbitmq_data:
+  minio_data:
+  clickhouse_data:
+  backend_data:
+
+networks:
+  rec-network:
+    driver: bridge
