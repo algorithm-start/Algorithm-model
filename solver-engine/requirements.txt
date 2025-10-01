@@ -1,0 +1,11 @@
+fastapi==0.110.0
+uvicorn[standard]==0.27.1
+grpcio==1.63.0
+grpcio-tools==1.63.0
+ortools==9.10.4067
+highspy==1.7.2
+scipy==1.11.0
+numpy==1.26.4
+PuLP==2.9.0
+pydantic==2.6.4
+python-dotenv==1.0.1

@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/recplatform}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
+    username: ${SPRING_DATASOURCE_USERNAME:recplatform}
+    password: ${SPRING_DATASOURCE_PASSWORD:recplatform123}
+    hikari:
+      # Tuned for ~20 concurrent requests in production. PostgreSQL default
+      # max_connections is 100, so this leaves ample headroom.
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      pool-name: RecPlatformHikariPool
+  h2:
+    console:
+      enabled: false
+  sql:
+    init:
+      mode: always
+      platform: postgresql
+      schema-locations: classpath:schema-postgresql.sql
+      data-locations: classpath:data-examples.sql,classpath:data-demo-postgresql.sql
+      continue-on-error: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:redis123}
+
+recplatform:
+  solver:
+    engine-url: ${SOLVER_ENGINE_URL:http://localhost:8000}
+
+logging:
+  level:
+    com.recplatform: INFO
+    org.springframework: WARN

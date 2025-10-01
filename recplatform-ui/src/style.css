@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --primary-color: #1677ff;
+  --sidebar-width: 220px;
+  --sidebar-collapsed-width: 64px;
+  --header-height: 56px;
+
+  /* Brand accent (Aliyun orange) */
+  --brand-accent: #ff6a00;
+  /* Layout surfaces */
+  --layout-header-bg: #ffffff;
+  --layout-sidebar-bg: #ffffff;
+  --layout-main-bg: #f0f2f5;
+}
+
+/* ===== Element Plus theme override: Aliyun console blue ===== */
+:root {
+  --el-color-primary: #1677ff;
+  --el-color-primary-light-3: #4096ff;
+  --el-color-primary-light-5: #69b1ff;
+  --el-color-primary-light-7: #91caff;
+  --el-color-primary-light-8: #bae0ff;
+  --el-color-primary-light-9: #e6f4ff;
+  --el-color-primary-dark-2: #0958d9;
+
+  --el-border-radius-base: 6px;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+/* Vue Flow custom styles */
+.vue-flow {
+  background: #f8f9fa;
+}
+
+.vue-flow__node {
+  cursor: pointer;
+}
+
+.vue-flow__edge-path {
+  stroke: #b1b3b8;
+  stroke-width: 2;
+}
+
+.vue-flow__controls {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c0c4cc;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #909399;
+}
+
+/* Element Plus overrides */
+.el-card {
+  border-radius: 8px;
+  border-color: #eef0f3;
+}
+
+.el-table th.el-table__cell {
+  background-color: #fafbfc;
+  color: #1f2329;
+  font-weight: 600;
+}
+
+/* Primary button: solid Aliyun blue */
+.el-button--primary {
+  --el-button-bg-color: #1677ff;
+  --el-button-border-color: #1677ff;
+  --el-button-hover-bg-color: #4096ff;
+  --el-button-hover-border-color: #4096ff;
+  --el-button-active-bg-color: #0958d9;
+  --el-button-active-border-color: #0958d9;
+}
+
+/* Sidebar menu: Aliyun-style light theme with soft selected state */
+.sidebar-menu.el-menu {
+  --el-menu-bg-color: transparent;
+  --el-menu-text-color: #1f2329;
+  --el-menu-hover-bg-color: #f2f3f5;
+  --el-menu-active-color: #1677ff;
+}
+.sidebar-menu .el-menu-item.is-active {
+  background-color: #e6f4ff;
+  color: #1677ff;
+  font-weight: 600;
+}
+.sidebar-menu .el-menu-item.is-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #1677ff;
+}
+.sidebar-menu .el-menu-item,
+.sidebar-menu .el-sub-menu__title {
+  height: 46px;
+  line-height: 46px;
+}
+
+/* Tabs active underline uses primary color automatically via vars */
+.el-tabs__item.is-active {
+  font-weight: 600;
+}
