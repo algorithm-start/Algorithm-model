@@ -1,5 +1,7 @@
 # RecPlatform
 
+**[English](README.md)** | **[中文文档](README_CN.md)**
+
 RecPlatform is an open-source algorithm optimization and workflow orchestration platform. It provides a complete solution for defining optimization problems, configuring solver algorithms, building data pipelines, and automating end-to-end workflows through a visual DAG editor.
 
 ## Features
