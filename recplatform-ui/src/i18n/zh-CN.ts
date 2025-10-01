@@ -75,7 +75,7 @@ export default {
     },
   },
   login: {
-    title: 'AEPlatform',
+    title: 'Recplatform',
     subtitle: '登录您的账户',
     username: '用户名',
     password: '密码',

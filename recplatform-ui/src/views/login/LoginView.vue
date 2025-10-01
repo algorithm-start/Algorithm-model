@@ -6,8 +6,8 @@
       <template #header>
         <div class="login-header">
           <div class="login-brand">
-            <span class="login-mark">AE</span>
-            <h1 class="login-title">AEPlatform</h1>
+            <span class="login-mark">Re</span>
+            <h1 class="login-title">Recplatform</h1>
           </div>
           <p class="login-subtitle">{{ t('login.subtitle') }}</p>
         </div>
