@@ -103,13 +103,10 @@ async function handleLogin() {
 .login-view {
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding-left: 12%;
   height: 100vh;
-  background: url('https://aone-copilot.oss-cn-shanghai.aliyuncs.com/images/1780453455419.png') no-repeat left -5px;
-  background-size: 100% 135%;
-  background-color: #060d1f;
+  background: #f5f7fa;
 }
 .lang-switcher {
   position: absolute;
@@ -134,11 +131,6 @@ async function handleLogin() {
 .login-card {
   width: 420px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 .login-header {
   text-align: center;
@@ -165,40 +157,32 @@ async function handleLogin() {
   margin: 0;
   font-size: 28px;
   font-weight: 700;
-  color: #ffffff;
+  color: #303133;
 }
 .login-subtitle {
   margin: 8px 0 0;
-  color: rgba(255, 255, 255, 0.65);
+  color: #909399;
   font-size: 14px;
 }
 .login-btn {
   width: 100%;
 }
 .login-card :deep(.el-card__header) {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--el-border-color-light);
 }
 .login-card :deep(.el-form-item__label) {
-  color: rgba(255, 255, 255, 0.85);
+  color: #606266;
 }
 .login-card :deep(.el-input__wrapper) {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
-}
-.login-card :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-}
-.login-card :deep(.el-input__wrapper.is-focus) {
-  box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+  background: #fff;
 }
 .login-card :deep(.el-input__inner) {
-  color: #ffffff;
+  color: #303133;
 }
 .login-card :deep(.el-input__inner::placeholder) {
-  color: rgba(255, 255, 255, 0.4);
+  color: #c0c4cc;
 }
 .login-card :deep(.el-input__prefix .el-icon) {
-  color: rgba(255, 255, 255, 0.5);
+  color: #909399;
 }
 </style>
