@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar">
     <div class="logo">
-      <span class="logo-mark">AE</span>
-      <span v-show="!appStore.sidebarCollapsed" class="logo-text">AEPlatform</span>
+      <span class="logo-mark">Re</span>
+      <span v-show="!appStore.sidebarCollapsed" class="logo-text">Recplatform</span>
     </div>
     <el-menu
       :default-active="activeMenu"

@@ -67,7 +67,7 @@ export default {
     },
   },
   login: {
-    title: 'AEPlatform',
+    title: 'Recplatform',
     subtitle: 'Sign in to your account',
     username: 'Username',
     password: 'Password',
