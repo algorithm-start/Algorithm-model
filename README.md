@@ -38,7 +38,6 @@ recplatform/
 │   └── recplatform-web/         # Application entry, configs, system info
 ├── recplatform-ui/              # Vue 3 frontend application
 ├── solver-engine/               # Python solver engine (FastAPI)
-├── offline-deploy/              # Offline deployment scripts
 ├── docker-compose.yml           # Docker Compose configuration
 └── docs/                        # Documentation
 ```
