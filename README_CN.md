@@ -79,7 +79,7 @@ docker compose ps
 
 ```bash
 cd recplatform-server
-./mvnw spring-boot:run -pl recplatform-web -Dspring-boot.run.profiles=dev
+mvn spring-boot:run -pl recplatform-web -Dspring-boot.run.profiles=dev
 ```
 
 **前端：**
