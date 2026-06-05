@@ -79,7 +79,7 @@ Default login credentials: `admin` / `admin123`
 
 ```bash
 cd recplatform-server
-./mvnw spring-boot:run -pl recplatform-web -Dspring-boot.run.profiles=dev
+mvn spring-boot:run -pl recplatform-web -Dspring-boot.run.profiles=dev
 ```
 
 **Frontend:**
